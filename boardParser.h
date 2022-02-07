@@ -12,6 +12,13 @@ using namespace std;
  */
 class boardParser
 {
+private:
+    /**
+     * @brief Flag que indica si el último análsis ha sido exitoso
+     * 
+     */
+    bool parseSuccess = false;
+
 public:
     /**
      * @brief Tamaño del tablero
@@ -44,6 +51,12 @@ public:
      * @param path Ruta del tablero
      */
     bool parseBoard(string path);
+
+    /**
+     * @brief Indica si el último análsis ha sido exitoso
+     * 
+     */
+    bool lastParse();
 };
 
 #endif /* BOARD_PARSER_H_ */

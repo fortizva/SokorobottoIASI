@@ -7,13 +7,16 @@ int main()
 {
     boardParser parser("boards/SOKOBOTTO1.txt");
 
-    for (int j = 0; j < parser.boardSize; j++)
+    if (parser.lastParse())
     {
-        for (int i = 0; i < parser.boardSize; i++)
+        for (int j = 0; j < parser.boardSize; j++)
         {
-            cout << parser.board[i][j] << "\t";
+            for (int i = 0; i < parser.boardSize; i++)
+            {
+                cout << parser.board[i][j] << "\t";
+            }
+            cout << endl;
         }
-        cout << endl;
     }
     cout << "Programa finalizado" << endl;
 }

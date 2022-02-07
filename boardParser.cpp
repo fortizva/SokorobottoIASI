@@ -26,21 +26,29 @@ bool boardParser::parseBoard(string path)
     {
         string data = "";
         int i = 0, j = 0;
-        while (getline(file, data, ',') && i + j * boardSize < boardSize*boardSize)
+        while (getline(file, data, ',') && i + j * boardSize < boardSize * boardSize)
         {
             this->board[i][j] = stoi(data);
 
             i++;
-            if(i==boardSize){
-                i=0;
+            if (i == boardSize)
+            {
+                i = 0;
                 j++;
             }
         }
         file.close();
+        this->parseSuccess = true;
     }
     else
     {
         cout << "Error al intentar analizar el fichero \"" << path << "\"" << endl;
-        return false;
+        this->parseSuccess = false;
     }
+    return parseSuccess;
+}
+
+bool boardParser::lastParse()
+{
+    return parseSuccess;
 }
