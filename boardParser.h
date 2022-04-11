@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "Tablero.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ public:
      * @brief Tablero de juego
      * 
      */
-    int board[boardSize][boardSize];
+    Tab board;
 
     /**
      * @brief Constructor por defecto de boardParser.
