@@ -4,6 +4,14 @@
 const int MAX=10;
 typedef int TVectorTablero[MAX][MAX];
 
+enum Direccion {
+	A, B, I, D, IA, IB, II, ID, EA, EB, EI, ED
+};
+
+enum TipoCasilla {
+	AIRE, MURO, CAJA, META, ROBOT
+};
+
 struct Tab {
 	TVectorTablero vTablero;
 	int ocupadas;
@@ -37,7 +45,7 @@ int obtenerValorCasilla(Tab t, int fila, int col);
 
 void mostrarMatriz(Tab t);
 
-void actualizarTablero(Tab &t);
+bool moverRobot(Tab &t, Direccion dir);
 
 float calcularH(Tab &t);
 
