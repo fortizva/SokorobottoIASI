@@ -1,15 +1,13 @@
 #ifndef TABLERO_H_
 #define TABLERO_H_
 
+#include "celda.h"
+
 const int MAX=10;
-typedef int TVectorTablero[MAX][MAX];
+typedef celda TVectorTablero[MAX][MAX];
 
 enum Direccion {
 	A, B, I, D, IA, IB, II, ID, EA, EB, EI, ED
-};
-
-enum TipoCasilla {
-	AIRE, MURO, CAJA, META, ROBOT
 };
 
 struct Tab {

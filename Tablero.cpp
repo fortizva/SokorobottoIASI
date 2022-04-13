@@ -1,4 +1,5 @@
 #include "Tablero.h"
+#include "celda.h"
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -12,20 +13,20 @@ void iniciarMatriz(Tab &t, int m[MAX][MAX], int tam)
 	{
 		for (j = 0; j < tam; j++)
 		{
-			t.vTablero[i][j] = m[i][j];
+			t.vTablero[i][j].ponerTipo(m[i][j]);
 		}
 	}
 }
 
 void insertar(Tab &t, int valor, int fila, int col)
 {
-	t.vTablero[fila][col] = valor;
+	t.vTablero[fila][col].ponerTipo(valor);
 	t.ocupadas++;
 }
 
 void borrar(Tab &t, int fila, int col)
 {
-	t.vTablero[fila][col] = AIRE;
+	t.vTablero[fila][col].ponerTipo(celda::AIRE);
 	t.ocupadas--;
 }
 
@@ -33,7 +34,7 @@ bool estaVacia(Tab t, int fila, int col)
 {
 	bool vacia;
 	vacia = false;
-	if (t.vTablero[fila][col] == AIRE)
+	if (t.vTablero[fila][col].obtenerTipo()==celda::AIRE);
 	{
 		vacia = true;
 	}
@@ -42,7 +43,7 @@ bool estaVacia(Tab t, int fila, int col)
 
 int obtenerValorCasilla(Tab t, int fila, int col)
 {
-	return (t.vTablero[fila][col]);
+	return (t.vTablero[fila][col].obtenerTipo());
 }
 
 void mostrarMatriz(Tab t)
@@ -59,7 +60,7 @@ void mostrarMatriz(Tab t)
 
 float calcularH(Tab &t)
 {
-	// Aquí toca hacer el cálculo de h'. Probablemente estará relacionado con la distancia de los objetivos a la caja más cercana.
+	// Aquí toca hacer el cálculo de h'. Probablemente estará relacionado con la distancia de los objetivos a la celda::CAJA más cercana.
 	return 0;
 }
 
@@ -71,9 +72,9 @@ bool moverRobot(Tab &t, Direccion dir)
 	{
 		while (col < t.tam && !success)
 		{
-			if (obtenerValorCasilla(t, fila, col) == ROBOT)
+			if (obtenerValorCasilla(t, fila, col) == celda::ROBOT)
 			{
-				// Si encontramos al robot salimos del bucle restando 1 a cada coordenada para anular los sumatorios del final de cada bucle.
+				// Si encontramos al celda::ROBOT salimos del bucle restando 1 a cada coordenada para anular los sumatorios del final de cada bucle.
 				fila--;
 				col--;
 				success = true;
@@ -88,102 +89,102 @@ bool moverRobot(Tab &t, Direccion dir)
 		switch (dir)
 		{
 		case A:
-			if (fila > 0 && obtenerValorCasilla(t, fila - 1, col) == AIRE)
+			if (fila > 0 && obtenerValorCasilla(t, fila - 1, col) == celda::AIRE)
 			{
-				insertar(t, fila - 1, col, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila - 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case B:
-			if (fila < t.tam - 1 && obtenerValorCasilla(t, fila + 1, col) == AIRE)
+			if (fila < t.tam - 1 && obtenerValorCasilla(t, fila + 1, col) == celda::AIRE)
 			{
-				insertar(t, fila + 1, col, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila + 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case I:
-			if (col > 0 && obtenerValorCasilla(t, fila, col - 1) == AIRE)
+			if (col > 0 && obtenerValorCasilla(t, fila, col - 1) == celda::AIRE)
 			{
-				insertar(t, fila, col - 1, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila, col - 1, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case D:
-			if (col < t.tam - 1 && obtenerValorCasilla(t, fila, col + 1) == AIRE)
+			if (col < t.tam - 1 && obtenerValorCasilla(t, fila, col + 1) == celda::AIRE)
 			{
-				insertar(t, fila, col + 1, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila, col + 1, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case IA:
-			if (fila > 0 && obtenerValorCasilla(t, fila - 1, col) == CAJA)
+			if (fila > 0 && obtenerValorCasilla(t, fila - 1, col) == celda::CAJA)
 			{
-				insertar(t, fila - 1, col, ROBOT);
-				insertar(t, fila, col, CAJA);
+				insertar(t, fila - 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::CAJA);
 				success = true;
 			}
 			break;
 		case IB:
-			if (fila < t.tam - 1 && obtenerValorCasilla(t, fila + 1, col) == CAJA)
+			if (fila < t.tam - 1 && obtenerValorCasilla(t, fila + 1, col) == celda::CAJA)
 			{
-				insertar(t, fila + 1, col, ROBOT);
-				insertar(t, fila, col, CAJA);
+				insertar(t, fila + 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::CAJA);
 				success = true;
 			}
 			break;
 		case II:
-			if (col > 0 && obtenerValorCasilla(t, fila, col - 1) == CAJA)
+			if (col > 0 && obtenerValorCasilla(t, fila, col - 1) == celda::CAJA)
 			{
-				insertar(t, fila, col - 1, ROBOT);
-				insertar(t, fila, col, CAJA);
+				insertar(t, fila, col - 1, celda::ROBOT);
+				insertar(t, fila, col, celda::CAJA);
 				success = true;
 			}
 			break;
 		case ID:
-			if (col < t.tam - 1 && obtenerValorCasilla(t, fila, col + 1) == CAJA)
+			if (col < t.tam - 1 && obtenerValorCasilla(t, fila, col + 1) == celda::CAJA)
 			{
-				insertar(t, fila, col + 1, ROBOT);
-				insertar(t, fila, col, CAJA);
+				insertar(t, fila, col + 1, celda::ROBOT);
+				insertar(t, fila, col, celda::CAJA);
 				success = true;
 			}
 			break;
 		case EA:
-			if (fila > 1 && obtenerValorCasilla(t, fila - 1, col) == CAJA && obtenerValorCasilla(t, fila - 2, col) == AIRE)
+			if (fila > 1 && obtenerValorCasilla(t, fila - 1, col) == celda::CAJA && obtenerValorCasilla(t, fila - 2, col) == celda::AIRE)
 			{
-				insertar(t, fila - 2, col, CAJA);
-				insertar(t, fila - 1, col, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila - 2, col, celda::CAJA);
+				insertar(t, fila - 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case EB:
-			if (fila < t.tam - 2 && obtenerValorCasilla(t, fila + 1, col) == CAJA && obtenerValorCasilla(t, fila + 2, col) == AIRE)
+			if (fila < t.tam - 2 && obtenerValorCasilla(t, fila + 1, col) == celda::CAJA && obtenerValorCasilla(t, fila + 2, col) == celda::AIRE)
 			{
-				insertar(t, fila + 2, col, CAJA);
-				insertar(t, fila + 1, col, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila + 2, col, celda::CAJA);
+				insertar(t, fila + 1, col, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case EI:
-			if (col > 1 && obtenerValorCasilla(t, fila, col - 1) == CAJA && obtenerValorCasilla(t, fila, col - 2) == AIRE)
+			if (col > 1 && obtenerValorCasilla(t, fila, col - 1) == celda::CAJA && obtenerValorCasilla(t, fila, col - 2) == celda::AIRE)
 			{
-				insertar(t, fila, col - 2, CAJA);
-				insertar(t, fila, col - 1, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila, col - 2, celda::CAJA);
+				insertar(t, fila, col - 1, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;
 		case ED:
-			if (col < t.tam - 2 && obtenerValorCasilla(t, fila, col + 1) == CAJA && obtenerValorCasilla(t, fila, col + 2) == AIRE)
+			if (col < t.tam - 2 && obtenerValorCasilla(t, fila, col + 1) == celda::CAJA && obtenerValorCasilla(t, fila, col + 2) == celda::AIRE)
 			{
-				insertar(t, fila, col + 2, CAJA);
-				insertar(t, fila, col + 1, ROBOT);
-				insertar(t, fila, col, AIRE);
+				insertar(t, fila, col + 2, celda::CAJA);
+				insertar(t, fila, col + 1, celda::ROBOT);
+				insertar(t, fila, col, celda::AIRE);
 				success = true;
 			}
 			break;

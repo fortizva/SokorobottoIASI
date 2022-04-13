@@ -8,16 +8,21 @@
 #ifndef CELDA_H_
 #define CELDA_H_
 
-class celda {
-private:
-	int cordX;
-	int cordY;
-	int valorH;
-	int tipo;
+class celda
+{
 public:
+	enum TipoCasilla
+	{
+		AIRE,
+		MURO,
+		CAJA,
+		META,
+		ROBOT
+	};
+
 	celda();
 
-	celda(int x, int y, int v, int t );
+	celda(int x, int y, int v, int t);
 
 	void ponerX(int x);
 	int obtenerX();
@@ -31,8 +36,13 @@ public:
 	void ponerTipo(int t);
 	int obtenerTipo();
 
-
 	virtual ~celda();
+	
+private:
+	int cordX;
+	int cordY;
+	int valorH;
+	TipoCasilla tipo;
 };
 
 #endif /* CELDA_H_ */
