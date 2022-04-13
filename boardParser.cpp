@@ -26,9 +26,9 @@ bool boardParser::parseBoard(string path)
     {
         string data = "";
         int i = 0, j = 0;
-        while (getline(file, data, ',') && i + j * boardSize < boardSize * boardSize)
+        while (getline(file, data, ',') && j * boardSize + i < boardSize * boardSize)
         {
-            this->board[i][j] = stoi(data);
+            insertar(this->board, stoi(data), j, i);
 
             i++;
             if (i == boardSize)
