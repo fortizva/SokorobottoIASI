@@ -19,6 +19,7 @@ private:
      */
     bool parseSuccess = false;
 
+
 public:
     /**
      * @brief Tamaño del tablero
