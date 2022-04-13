@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include "celda.h"
 
 #define DEFAULT_BOARD "boards/SOKOBOTTO1.txt"
 
@@ -28,7 +29,7 @@ bool boardParser::parseBoard(string path)
         int i = 0, j = 0;
         while (getline(file, data, ',') && j * boardSize + i < boardSize * boardSize)
         {
-            insertar(this->board, stoi(data), j, i);
+            insertar(this->board, (celda::TipoCasilla) stoi(data), j, i);
 
             i++;
             if (i == boardSize)

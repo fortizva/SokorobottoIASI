@@ -11,11 +11,11 @@ celda::celda() {
 	cordX = 0;
 	cordY = 0;
 	valorH = 0;
-	tipo = 0;
+	tipo = AIRE;
 
 }
 
-celda::celda(int x, int y, int v, int t) {
+celda::celda(int x, int y, int v, TipoCasilla t) {
 	cordX = x;
 	cordY = y;
 	valorH = v;
@@ -46,11 +46,11 @@ int celda::obtenerValor() {
 	return valorH;
 }
 
-void celda::ponerTipo(int t) {
+void celda::ponerTipo(TipoCasilla t) {
 	tipo = t;
 }
 
-int celda::obtenerTipo() {
+celda::TipoCasilla celda::obtenerTipo() {
 	return tipo;
 }
 

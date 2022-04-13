@@ -22,7 +22,7 @@ public:
 
 	celda();
 
-	celda(int x, int y, int v, int t);
+	celda(int x, int y, int v, TipoCasilla t);
 
 	void ponerX(int x);
 	int obtenerX();
@@ -33,16 +33,19 @@ public:
 	void ponerValor(int v);
 	int obtenerValor();
 
-	void ponerTipo(int t);
-	int obtenerTipo();
+	void ponerTipo(TipoCasilla t);
+	TipoCasilla obtenerTipo();
 
 	virtual ~celda();
-	
 private:
 	int cordX;
 	int cordY;
 	int valorH;
 	TipoCasilla tipo;
+
+
 };
+
+
 
 #endif /* CELDA_H_ */

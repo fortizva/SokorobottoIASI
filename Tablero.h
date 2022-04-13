@@ -19,12 +19,12 @@ struct Tab {
 //PRE:{m inicializado correctamente,0<tam<MAX}
 //POST:{inicia el tablero t a partir de los valores de la matriz m}
 //Compejidad: O(n)²
-void iniciarMatriz(Tab &t,int m[MAX][MAX], int tam);
+void iniciarMatriz(Tab &t,celda m[MAX][MAX], int tam);
 
 //PRE:{valor>0,fila>=0,col>=0}
 //POST:{inserta el valor de una nueva casilla en la posicion fila col}
 //Compejidad: O(1)
-void insertar(Tab &t, int valor,int fila, int col);
+void insertar(Tab &t, celda::TipoCasilla valor,int fila, int col);
 
 //PRE:{fila>=0,col>=0}
 //POST:{vacia la casilla en la posicion fila col}
