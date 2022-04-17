@@ -11,6 +11,7 @@ int main()
     if (parser.lastParse())
     {
         mostrarMatriz(parser.board);
-    }
+    } else
+        cout << "Hubo un problema al leer el fichero de tablero y el programa se detuvo." << endl;
     cout << "Programa finalizado" << endl;
 }

@@ -1,8 +1,8 @@
 #include "Tablero.h"
 #include "celda.h"
-#include <iostream>
 #include <cmath>
 using namespace std;
+
 
 void iniciarMatriz(Tab &t, celda m[MAX][MAX], int tam)
 {
@@ -34,7 +34,8 @@ bool estaVacia(Tab t, int fila, int col)
 {
 	bool vacia;
 	vacia = false;
-	if (t.vTablero[fila][col].obtenerTipo()==celda::AIRE);
+	if (t.vTablero[fila][col].obtenerTipo() == celda::AIRE)
+		;
 	{
 		vacia = true;
 	}
@@ -58,12 +59,42 @@ void mostrarMatriz(Tab t)
 	}
 }
 
-float calcularH(Tab &t)
+void calcularH(Tab &t, bool modo)
 {
-	// Aquí toca hacer el cálculo de h'. Probablemente estará relacionado con la distancia de los objetivos a la celda::CAJA más cercana.
-	return 0;
+	// Usar la lista de coordenadas correspondiente a cada modo
+	vector<Coordenada> coords = (modo) ? t.posiciones : t.metas;
+	Coordenada c;
+	int minDist, dist;
+
+	for (int fila = 0; fila < t.tam; fila++)
+	{
+		c.y = fila;
+		for (int col = 0; col < t.tam; col++)
+		{
+			c.x = col;
+			minDist = 9999;
+			// Obtenemos las coordenadas de menor distancia para cada casilla
+			for (int i = 0; i < coords.size(); i++)
+			{
+				dist = getDistancia(c, coords[i]);
+				if (dist < minDist)
+					minDist = dist;
+			}
+			if (modo)
+				t.vTablero[fila][col].ponerValorC(minDist);
+			else
+				t.vTablero[fila][col].ponerValorR(minDist);
+		}
+	}
 }
 
+float getDistancia(Coordenada c1, Coordenada c2)
+{
+	return sqrt(pow((c1.x - c2.x), 2) + pow((c1.y - c2.y), 2));
+}
+
+// TODO: Modificar este método para poder usarlo con el nuevo planteamiento (sin necesidad de modificar tablero).
+/*
 bool moverRobot(Tab &t, Direccion dir)
 {
 	bool success = false;
@@ -192,8 +223,8 @@ bool moverRobot(Tab &t, Direccion dir)
 	}
 	return success;
 }
-
-
-bool isFin(Tab t){
+*/
+bool isFin(Tab t)
+{
 	return false;
 }
