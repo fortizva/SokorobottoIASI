@@ -47,4 +47,9 @@ bool moverRobot(Tab &t, Direccion dir);
 
 float calcularH(Tab &t);
 
+// PRE:{t está inicializada correctamente}
+// POST: {Devuelve 'true' si el tablero está en una situación de fin de juego}
+// 
+bool isFin(Tab t);
+
 #endif /* TABLERO_H_ */

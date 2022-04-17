@@ -1,16 +1,15 @@
-/*
- * eSimple.h
- *
- *  Created on: 13 abr 2022
- *      Author: ernes
- */
-
 #ifndef ESIMPLE_H_
 #define ESIMPLE_H_
+#include "Tablero.h"
+#include "Nodo.h"
+#include "Lista.h"
+#include <queue>
 
-class eSimple {
+class eSimple
+{
 public:
 	eSimple();
+	void escaladaSimple(Nodo nodo, queue<TABLERO_H_::Direccion> &sol);
 	virtual ~eSimple();
 };
 

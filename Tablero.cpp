@@ -192,3 +192,8 @@ bool moverRobot(Tab &t, Direccion dir)
 	}
 	return success;
 }
+
+
+bool isFin(Tab t){
+	return false;
+}
