@@ -1,16 +1,15 @@
-/*
- * mPendiente.h
- *
- *  Created on: 13 abr 2022
- *      Author: ernes
- */
-
 #ifndef MPENDIENTE_H_
 #define MPENDIENTE_H_
 
-class mPendiente {
+#include "Lista.h"
+#include "Tablero.h"
+#include <queue>
+
+class mPendiente
+{
 public:
 	mPendiente();
+	void maximaPendiente(Nodo nodo, queue<TABLERO_H_::Direccion> &sol);
 	virtual ~mPendiente();
 };
 

@@ -27,10 +27,37 @@ bool boardParser::parseBoard(string path)
     {
         string data = "";
         int i = 0, j = 0;
-        while (getline(file, data, ',') && j * boardSize + i < boardSize * boardSize)
+        bool failedParse = false;
+        Coordenada aux;
+        while (getline(file, data, ',') && j * boardSize + i < boardSize * boardSize && !failedParse)
         {
-            insertar(this->board, (celda::TipoCasilla) stoi(data), j, i);
-
+            switch ((celda::TipoCasilla)stoi(data))
+            {
+            case celda::TipoCasilla::AIRE:
+            case celda::TipoCasilla::MURO:
+                insertar(this->board, (celda::TipoCasilla)stoi(data), j, i);
+                break;
+            case celda::TipoCasilla::CAJA:
+                insertar(this->board, celda::TipoCasilla::AIRE, j, i);
+                aux.x = i;
+                aux.y = j;
+                this->board.cajas.push_back(aux);
+                break;
+            case celda::TipoCasilla::META:
+                insertar(this->board, celda::TipoCasilla::AIRE, j, i);
+                aux.x = i;
+                aux.y = j;
+                this->board.metas.push_back(aux);
+                break;
+            case celda::TipoCasilla::ROBOT:
+                insertar(this->board, celda::TipoCasilla::AIRE, j, i);
+                this->board.robotCoord.x = i;
+                this->board.robotCoord.y = j;
+                break;
+            default:
+                failedParse = true;
+                break;
+            }
             i++;
             if (i == boardSize)
             {
@@ -39,7 +66,7 @@ bool boardParser::parseBoard(string path)
             }
         }
         file.close();
-        this->parseSuccess = true;
+        this->parseSuccess = !failedParse;
     }
     else
     {

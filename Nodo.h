@@ -9,13 +9,13 @@ class Nodo{
 public:
         float valorh;
         Tab t;
-        string id;
+        TABLERO_H_::Direccion id;
         Nodo *A;
         Lista *oper;
 
     Nodo();
 
-    Nodo(Tab t_, float valorh_, Nodo *A_,string _id);
+    Nodo(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id);
 
     int getValorh();
 
@@ -25,9 +25,9 @@ public:
 
     void getHijo(Lista *hijos);
 
-    string getId();
+    TABLERO_H_::Direccion getId();
 
-    void setParametros(Tab t_, float valorh_, Nodo *A_,string _id);
+    void setParametros(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id);
 
     ~Nodo();
 

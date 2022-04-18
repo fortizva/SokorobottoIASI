@@ -1,10 +1,3 @@
-/*
- * celda.h
- *
- *  Created on: 13 abr 2022
- *      Author: ernes
- */
-
 #ifndef CELDA_H_
 #define CELDA_H_
 
@@ -22,7 +15,7 @@ public:
 
 	celda();
 
-	celda(int x, int y, int v, TipoCasilla t);
+	celda(int x, int y, float vr, float vc, TipoCasilla t);
 
 	void ponerX(int x);
 	int obtenerX();
@@ -30,22 +23,23 @@ public:
 	void ponerY(int y);
 	int obtenerY();
 
-	void ponerValor(int v);
-	int obtenerValor();
+	void ponerValorR(float v);
+	float obtenerValorR();
+
+	void ponerValorC(float v);
+	float obtenerValorC();
 
 	void ponerTipo(TipoCasilla t);
 	TipoCasilla obtenerTipo();
 
 	virtual ~celda();
+
 private:
 	int cordX;
 	int cordY;
-	int valorH;
+	float valorR;
+	float valorC;
 	TipoCasilla tipo;
-
-
 };
-
-
 
 #endif /* CELDA_H_ */

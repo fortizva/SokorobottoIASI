@@ -12,7 +12,7 @@ Nodo::Nodo(){
 	this->A=NULL;
 }
 
-Nodo::Nodo(Tab t_, float valorh_, Nodo *A_,string _id){
+Nodo::Nodo(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id){
 	this->t=t_;
 	this->valorh=valorh_;
 	this->A=A_;
@@ -20,7 +20,7 @@ Nodo::Nodo(Tab t_, float valorh_, Nodo *A_,string _id){
 }
 
 
-void Nodo::setParametros(Tab t_, float valorh_, Nodo *A_,string _id){
+void Nodo::setParametros(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id){
 	this->t=t_;
 	this->valorh=valorh_;
 	this->A=A_;
@@ -44,7 +44,7 @@ void Nodo::getHijo(Lista *hijos){
 	hijos=this->oper;
 }
 
-string Nodo::getId(){
+TABLERO_H_::Direccion Nodo::getId(){
 	return this->id;
 }
 
