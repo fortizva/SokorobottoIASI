@@ -90,7 +90,7 @@ int main()
         mostrarMatriz(parser.board);
 
     }
-    else
+    else{
         cout << "Hubo un problema al leer el fichero de tablero y el programa se detuvo." << endl;
     cout << "Programa finalizado" << endl;
 }

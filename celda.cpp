@@ -46,7 +46,7 @@ void celda::ponerValorC(float v) {
 }
 
 float celda::obtenerValorC() {
-	return valorC;
+	valorC = v;
 }
 
 

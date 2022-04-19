@@ -15,6 +15,7 @@ public:
 
 	celda();
 
+
 	celda(int x, int y, float vr, float vc, TipoCasilla t);
 
 	void ponerX(int x);
@@ -37,8 +38,10 @@ public:
 private:
 	int cordX;
 	int cordY;
+
 	float valorR;
 	float valorC;
+
 	TipoCasilla tipo;
 };
 
