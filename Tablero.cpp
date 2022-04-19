@@ -252,5 +252,5 @@ bool encontradoMetas(Tab t, int fil, int col) {
 		}
 		return enc;
 }
-}
+
 
