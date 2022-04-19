@@ -341,3 +341,59 @@ bool isTarea(Tab t, int fil, int col){
 	}
 	return found;
 }
+
+void ejecutarTarea(Tab t, queue<Direccion> &sol) {
+		int fila = t.robotCoord.x;
+		int col = t.robotCoord.y;
+	switch(t.posiciones.at(0).task)
+	{
+		case IA:
+			posicionarCaja(t, fila, col + 1, fila, col);
+			t.robotCoord.x = fila;
+			t.robotCoord.y = col + 1;
+		break;
+
+		case IB:
+			posicionarCaja(t, fila, col - 1, fila, col);
+			t.robotCoord.x = fila;
+			t.robotCoord.y = col - 1;
+		break;
+
+		case II:
+			posicionarCaja(t, fila - 1, col, fila, col);
+			t.robotCoord.x = fila - 1;
+			t.robotCoord.y = col;
+		break;
+
+		case ID:
+			posicionarCaja(t, fila + 1, col, fila, col);
+			t.robotCoord.x = fila + 1;
+			t.robotCoord.y = col;
+		break;
+
+		case EA:
+			posicionarCaja(t, fila, col + 1, fila, col + 2);
+			t.robotCoord.x = fila;
+			t.robotCoord.y = col + 1;
+		break;
+
+		case EB:
+			posicionarCaja(t, fila, col - 1, fila, col - 2);
+			t.robotCoord.x = fila;
+			t.robotCoord.y = col - 1;
+		break;
+
+		case EI:
+			posicionarCaja(t, fila - 1, col, fila - 2, col);
+			t.robotCoord.x = fila - 1;
+			t.robotCoord.y = col;
+		break;
+
+		case ED:
+			posicionarCaja(t, fila + 1, col, fila + 2, col);
+			t.robotCoord.x = fila + 1;
+			t.robotCoord.y = col;
+		break;
+	}
+
+}

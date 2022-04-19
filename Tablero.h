@@ -4,6 +4,7 @@
 #include "celda.h"
 #include <iostream>
 #include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -61,7 +62,7 @@ int obtenerValorCasilla(Tab t, int fila, int col);
 
 void mostrarMatriz(Tab t);
 
-bool moverRobot(Tab &t, Direccion dir);
+//bool moverRobot(Tab &t, Direccion dir);
 
 // PRE: {t está inicializada correctamente y los datos de coordenadas de metas y posiciones objetivo están completos}
 // POST: {Fija los valores de heurística en las casillas del tablero desde la perspectiva del robot (false) o de las cajas (true)}
@@ -102,5 +103,7 @@ string direccionToString(Direccion d);
 // POST: {Cambia las coordenadas de una caja del tablero}
 // Complejidad: O(n)
 void posicionarCaja(Tab &t, int x, int y, int tx, int ty);
+
+void ejecutarTarea(Tab t, queue <Direccion> &sol);
 
 #endif /* TABLERO_H_ */
