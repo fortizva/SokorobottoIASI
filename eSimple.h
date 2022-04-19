@@ -5,12 +5,6 @@
 #include "Lista.h"
 #include <queue>
 
-class eSimple
-{
-public:
-	eSimple();
-	void escaladaSimple(Nodo nodo, queue<TABLERO_H_::Direccion> &sol);
-	virtual ~eSimple();
-};
+void escaladaSimple(Nodo nodo, queue<TABLERO_H_::Direccion> &sol);
 
 #endif /* ESIMPLE_H_ */

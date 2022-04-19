@@ -1,9 +1,5 @@
 #include "mPendiente.h"
 
-mPendiente::mPendiente()
-{
-}
-
 void maximaPendiente(Nodo nodo, queue<TABLERO_H_::Direccion> &sol)
 {
 	// Comprobamos que no hemos llegado a una solución antes de continuar con la búsqueda
@@ -32,8 +28,4 @@ void maximaPendiente(Nodo nodo, queue<TABLERO_H_::Direccion> &sol)
 			maximaPendiente(nodo, sol);
 		}
 	}
-}
-
-mPendiente::~mPendiente()
-{
 }

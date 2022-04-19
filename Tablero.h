@@ -74,13 +74,17 @@ bool isFin(Tab t);
 
 // PRE:{t esta inicializada correctamente}
 // POST: {Devuelve 'true' en la posicion indicada esta ocupada por una caja y 'false' en caso contrario}
-// Complejidad:
+// Complejidad: O(n)
 bool ocupado(Tab t, int fil, int col);
 
 // PRE:{t esta inicializada correctamente}
 // POST: {Devuelve 'true' en la posicion indicada esta ocupada por una meta y 'false' en caso contrario}
-// Complejidad:
+// Complejidad: O(n)
 bool encontradoMetas(Tab t, int fil, int col);
 
+// PRE: {d está inicializado correctamente}
+// POST: {Devuelve en forma de string el valor de la dirección dada}
+// Complejidad: O(1)
+string direccionToString(Direccion d);
 
 #endif /* TABLERO_H_ */

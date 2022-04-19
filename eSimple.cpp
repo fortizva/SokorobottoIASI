@@ -1,9 +1,5 @@
 #include "eSimple.h"
 
-eSimple::eSimple()
-{
-}
-
 void escaladaSimple(Nodo nodo, queue<TABLERO_H_::Direccion> &sol)
 {
 	// Comprobamos que no hemos llegado a una solución antes de continuar con la búsqueda
@@ -26,8 +22,4 @@ void escaladaSimple(Nodo nodo, queue<TABLERO_H_::Direccion> &sol)
 			nodo.oper->consultar(aux);
 		}
 	}
-}
-
-eSimple::~eSimple()
-{
 }

@@ -253,4 +253,48 @@ bool encontradoMetas(Tab t, int fil, int col) {
 		return enc;
 }
 
-
+string direccionToString(Direccion d){
+	string res;
+	switch(d){
+		case Direccion::A:
+			res = "A";
+			break;
+		case Direccion::B:
+			res = "B";
+			break;
+		case Direccion::I:
+			res = "I";
+			break;
+		case Direccion::D:
+			res = "D";
+			break;
+		case Direccion::EA:
+			res = "EA";
+			break;
+		case Direccion::EB:
+			res = "EB";
+			break;
+		case Direccion::EI:
+			res = "EI";
+			break;
+		case Direccion::ED:
+			res = "ED";
+			break;
+		case Direccion::IA:
+			res = "IA";
+			break;
+		case Direccion::IB:
+			res = "IB";
+			break;
+		case Direccion::II:
+			res = "II";
+			break;
+		case Direccion::ID:
+			res = "ID";
+			break;
+		default:
+			res ="";
+			break;
+	}
+	return res;
+}
