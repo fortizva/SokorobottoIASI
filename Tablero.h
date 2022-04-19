@@ -19,12 +19,18 @@ struct Coordenada {
 	int y;
 };
 
+struct Tarea {
+	Coordenada coord;
+	Direccion task;
+};
+
 struct Tab {
 	TVectorTablero vTablero;
 	int ocupadas;
 	int tam;
 	Coordenada robotCoord;
-	vector<Coordenada> cajas, posiciones, metas;
+	vector<Coordenada> cajas, metas;
+	vector<Tarea> posiciones;
 };
 
 
@@ -73,6 +79,11 @@ float getDistancia(Coordenada c1, Coordenada c2);
 bool isFin(Tab t);
 
 // PRE:{t esta inicializada correctamente}
+// POST: {Devuelve 'true' si la posicion indicada esta ocupada por una tarea y 'false' en caso contrario}
+// Complejidad: O(n)
+bool isTarea(Tab t, int fil, int col);
+
+// PRE:{t esta inicializada correctamente}
 // POST: {Devuelve 'true' en la posicion indicada esta ocupada por una caja y 'false' en caso contrario}
 // Complejidad: O(n)
 bool ocupado(Tab t, int fil, int col);
@@ -86,5 +97,10 @@ bool encontradoMetas(Tab t, int fil, int col);
 // POST: {Devuelve en forma de string el valor de la dirección dada}
 // Complejidad: O(1)
 string direccionToString(Direccion d);
+
+// PRE: {t está inicializado correctamente y las coordenadas de origen y destino están dentro de los límites válidos}
+// POST: {Cambia las coordenadas de una caja del tablero}
+// Complejidad: O(n)
+void posicionarCaja(Tab &t, int x, int y, int tx, int ty);
 
 #endif /* TABLERO_H_ */

@@ -4,7 +4,6 @@
 #include "Lista.h"
 using namespace std;
 
-
 void iniciarMatriz(Tab &t, celda m[MAX][MAX], int tam)
 {
 	int i;
@@ -62,7 +61,16 @@ void mostrarMatriz(Tab t)
 void calcularH(Tab &t, bool modo)
 {
 	// Usar la lista de coordenadas correspondiente a cada modo
-	vector<Coordenada> coords = (modo) ? t.posiciones : t.metas;
+	vector<Coordenada> coords;
+	if (modo)
+	{
+		for (int i = 0; i < t.posiciones.size(); i++)
+		{
+			coords.push_back(t.posiciones.at(i).coord);
+		}
+	}
+	else
+		coords = t.metas;
 	Coordenada c;
 	int minDist, dist, i;
 
@@ -229,72 +237,107 @@ bool isFin(Tab t)
 	return false;
 }
 
-bool ocupado(Tab t, int fil, int col) {
+bool ocupado(Tab t, int fil, int col)
+{
 	int i = 0;
 	bool enc = false;
-	while ( i < t.cajas.size() && !enc){
-		if (t.cajas[i].x == fil and t.cajas[i].y == col){
+	while (i < t.cajas.size() && !enc)
+	{
+		if (t.cajas[i].x == fil and t.cajas[i].y == col)
+		{
 			enc = true;
 		}
-			i++;
+		i++;
 	}
 	return enc;
 }
 
-bool encontradoMetas(Tab t, int fil, int col) {
+bool encontradoMetas(Tab t, int fil, int col)
+{
 	int i = 0;
-		bool enc = false;
-		while ( i < t.metas.size() && !enc){
-			if (t.metas[i].x == fil and t.metas[i].y == col){
-				enc = true;
-			}
-				i++;
+	bool enc = false;
+	while (i < t.metas.size() && !enc)
+	{
+		if (t.metas[i].x == fil and t.metas[i].y == col)
+		{
+			enc = true;
 		}
-		return enc;
+		i++;
+	}
+	return enc;
 }
 
-string direccionToString(Direccion d){
+string direccionToString(Direccion d)
+{
 	string res;
-	switch(d){
-		case Direccion::A:
-			res = "A";
-			break;
-		case Direccion::B:
-			res = "B";
-			break;
-		case Direccion::I:
-			res = "I";
-			break;
-		case Direccion::D:
-			res = "D";
-			break;
-		case Direccion::EA:
-			res = "EA";
-			break;
-		case Direccion::EB:
-			res = "EB";
-			break;
-		case Direccion::EI:
-			res = "EI";
-			break;
-		case Direccion::ED:
-			res = "ED";
-			break;
-		case Direccion::IA:
-			res = "IA";
-			break;
-		case Direccion::IB:
-			res = "IB";
-			break;
-		case Direccion::II:
-			res = "II";
-			break;
-		case Direccion::ID:
-			res = "ID";
-			break;
-		default:
-			res ="";
-			break;
+	switch (d)
+	{
+	case Direccion::A:
+		res = "A";
+		break;
+	case Direccion::B:
+		res = "B";
+		break;
+	case Direccion::I:
+		res = "I";
+		break;
+	case Direccion::D:
+		res = "D";
+		break;
+	case Direccion::EA:
+		res = "EA";
+		break;
+	case Direccion::EB:
+		res = "EB";
+		break;
+	case Direccion::EI:
+		res = "EI";
+		break;
+	case Direccion::ED:
+		res = "ED";
+		break;
+	case Direccion::IA:
+		res = "IA";
+		break;
+	case Direccion::IB:
+		res = "IB";
+		break;
+	case Direccion::II:
+		res = "II";
+		break;
+	case Direccion::ID:
+		res = "ID";
+		break;
+	default:
+		res = "";
+		break;
 	}
 	return res;
+}
+
+void posicionarCaja(Tab &t, int x, int y, int tx, int ty)
+{
+	bool found = false;
+	int i = 0;
+	while (!found && i < t.cajas.size())
+	{
+		if (t.cajas.at(i).x == x && t.cajas.at(i).y == y)
+		{
+			t.cajas.at(i).x = tx;
+			t.cajas.at(i).y = ty;
+			found = true;
+		}
+		i++;
+	}
+}
+
+bool isTarea(Tab t, int fil, int col){
+	int i = 0;
+	bool found = false;
+	while(!found && i < t.posiciones.size()){
+		if(t.posiciones.at(i).coord.x == col && t.posiciones.at(i).coord.y == fil)
+			found = true;
+		i++;
+	}
+	return found;
 }

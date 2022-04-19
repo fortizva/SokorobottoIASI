@@ -49,7 +49,7 @@ TABLERO_H_::Direccion Nodo::getId(){
 }
 
 Nodo::~Nodo(){
-	delete this->oper;
+	//delete this;
 }
 
 
