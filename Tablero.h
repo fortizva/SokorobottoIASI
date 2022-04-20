@@ -106,4 +106,7 @@ void posicionarCaja(Tab &t, int x, int y, int tx, int ty);
 
 void ejecutarTarea(Tab t, queue <Direccion> &sol);
 
+void imprimirCola(queue<Direccion> &sol);
+
+
 #endif /* TABLERO_H_ */

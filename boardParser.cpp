@@ -66,6 +66,7 @@ bool boardParser::parseBoard(string path)
             }
         }
         file.close();
+        this -> board.tam = boardSize;
         this->parseSuccess = !failedParse;
     }
     else

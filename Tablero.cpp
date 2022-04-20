@@ -62,25 +62,29 @@ void calcularH(Tab &t, bool modo)
 {
 	// Usar la lista de coordenadas correspondiente a cada modo
 	vector<Coordenada> coords;
-	if (modo)
+	if (!modo)
 	{
 		for (int i = 0; i < t.posiciones.size(); i++)
 		{
 			coords.push_back(t.posiciones.at(i).coord);
 		}
 	}
-	else
+	else{
 		coords = t.metas;
+	}
 	Coordenada c;
 	int minDist, dist, i;
+
 
 	for (int fila = 0; fila < t.tam; fila++)
 	{
 		c.y = fila;
 		for (int col = 0; col < t.tam; col++)
 		{
+			if(obtenerValorCasilla(t, fila, col) == celda::AIRE){
 			c.x = col;
-			minDist = 9999;
+			minDist = 9998;
+
 			// Obtenemos las coordenadas de menor distancia para cada casilla
 			for (i = 0; i < coords.size(); i++)
 			{
@@ -89,9 +93,14 @@ void calcularH(Tab &t, bool modo)
 					minDist = dist;
 			}
 			if (modo)
+			{
 				t.vTablero[fila][col].ponerValorC(minDist);
+			}
 			else
+			{
 				t.vTablero[fila][col].ponerValorR(minDist);
+			}
+			}
 		}
 	}
 }
@@ -416,4 +425,18 @@ void ejecutarTarea(Tab t, queue<Direccion> &sol) {
 		break;
 	}
 
+}
+void imprimirCola(queue<Direccion> &sol){
+	queue<Direccion> aux;
+	int j;
+	for(int i = 0; i < sol.size(); i++){
+		cout << direccionToString(sol.front()) << " -> ";
+		aux.push(sol.front());
+		sol.pop();
+	}
+	while( !aux.empty()){
+		sol.push(aux.front());
+		aux.pop();
+	}
+	cout <<endl;
 }

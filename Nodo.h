@@ -29,6 +29,8 @@ public:
 
     void setParametros(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id);
 
+    void generarHijos();
+
     ~Nodo();
 
 
