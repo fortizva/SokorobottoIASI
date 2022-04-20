@@ -215,7 +215,7 @@ int main()
 		switch (i)
 		{
 		case 1:
-			// while(!TABLERO_H_::isFin(nodoC.t)) { // No añado el while aún porque falta implementar el método que compruebe el final
+			while(!TABLERO_H_::isFin(nodoC.t)) { // No añado el while aún porque falta implementar el método que compruebe el final
 			//  Generamos las posiciones a las que se podría mover el robot para interactuar con las cajas
 			for (Coordenada c : nodoC.t.cajas)
 			{
@@ -236,12 +236,38 @@ int main()
 				// TABLERO_H_::ejecutarTarea(nodoR.t, sol)
 			}
 			// Actualizar el nodoC para que se encuentre en la situación del nodoR
-			// } // FIN DEL WHILE
+			nodoC.t.posiciones = nodoR.t.posiciones;
+
+			 } // FIN DEL WHILE
 			cout << "Se ha realizado el cálculo mediante el metodo escalada simple" << endl;
 			break;
 
 		case 2:
+			while(!TABLERO_H_::isFin(nodoC.t)) {
+			for (Coordenada c : nodoC.t.cajas)
+			{
+				generarMovsCaja(nodoC, c); // Tocará modificar este método para que con heurística sólo elija la mejor casilla (con sus consiguientes 2 tareas de intercambiar y empujar)
+			}
+
+			// Copiamos las posiciones deseadas (previamente filtradas con heurística) de todas las cajas al nodo del robot
+			nodoR.t.posiciones = nodoC.t.posiciones;
+
+			// Calculamos la ruta del robot a las posiciones
+			TABLERO_H_::calcularH(nodoR.t, false);
+
+			// Llevamos el robot a una tarea
 			MPENDIENTE_H_::maximaPendiente(nodoC, sol);
+
+			if (TABLERO_H_::isTarea(nodoR.t, nodoR.t.robotCoord.y, nodoR.t.robotCoord.x))
+			{
+				// TODO: Hacer algo aquí para ejecutar la tarea de la coordenada en la que se encuentra el robot
+				// TABLERO_H_::ejecutarTarea(nodoR.t, sol)
+
+			}
+			// Actualizar el nodoC para que se encuentre en la situación del nodoR
+			nodoC.t.posiciones = nodoR.t.posiciones;
+
+			 } // FIN DEL WHILE
 			cout << "Se ha realizado el cálculo mediante el metodo maxima pendiente" << endl;
 			break;
 
