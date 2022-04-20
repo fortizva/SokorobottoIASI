@@ -234,20 +234,27 @@ bool moverRobot(Tab &t, Direccion dir)
 */
 bool isFin(Tab t)
 {
-	bool enc = true;
+	bool enc;
+	bool end = true;
 	int i = 0, j = 0;
-	while( i <= t.cajas.size() && enc){
-		while( j <= i && enc){
-			if(t.cajas[i].x != t.metas[j].x or t.cajas[i].y != t.metas[j].y){
-				enc = false;
+	while( i <= t.cajas.size() && end){
+		enc = false;
+		while( j <= i && !enc){
+			if(t.cajas[i].x == t.metas[j].x or t.cajas[i].y == t.metas[j].y){
+				enc = true;
 			}
 			else{
 				j++;
 			}
 		}
+		if(!enc){
+			end = false;
+		}
+		else{
 		i++;
+		}
 	}
-	return enc;
+	return end;
 }
 
 bool ocupado(Tab t, int fil, int col)
