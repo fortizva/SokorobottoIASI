@@ -239,7 +239,7 @@ bool isFin(Tab t)
 	int i = 0, j = 0;
 	while( i <= t.cajas.size() && end){
 		enc = false;
-		while( j <= i && !enc){
+		while( j <= t.metas.size() && !enc){
 			if(t.cajas[i].x == t.metas[j].x or t.cajas[i].y == t.metas[j].y){
 				enc = true;
 			}
