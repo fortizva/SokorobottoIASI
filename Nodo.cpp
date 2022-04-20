@@ -17,6 +17,7 @@ Nodo::Nodo(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _id){
 	this->valorh=valorh_;
 	this->A=A_;
 	this->id=_id;
+	this->oper=new Lista();
 }
 
 
@@ -25,6 +26,7 @@ void Nodo::setParametros(Tab t_, float valorh_, Nodo *A_,TABLERO_H_::Direccion _
 	this->valorh=valorh_;
 	this->A=A_;
 	this->id=_id;
+	this->oper=new Lista();
 }
 
 

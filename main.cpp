@@ -198,7 +198,7 @@ void generarHijos(Nodo &n)
 int main()
 {
 	queue<Direccion> sol;
-	boardParser parser("boards/SOKOBOTTO1.txt");
+	boardParser parser("src/boards/SOKOBOTTO1.txt");
 	// Usamos dos nodos para no mezclar los hijos de ambas heurísticas
 	Nodo nodoC(parser.board, 9999, NULL, Direccion::A);
 	Nodo nodoR(parser.board, 9999, NULL, Direccion::A);
